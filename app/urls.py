@@ -15,6 +15,14 @@ router = DefaultRouter()
 
 router.register(r"users", UserViewSet, basename="users")
 
+from core.views import UserViewSet
+from core.views import CategoriaViewSet # nova linha
+
+router = DefaultRouter()
+router.register(r"categorias", CategoriaViewSet) # nova linha
+router.register(r"users", UserViewSet, basename="users")
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     # OpenAPI 3
@@ -34,4 +42,6 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     # API
     path("api/", include(router.urls)),
+
+
 ]
